@@ -9,7 +9,7 @@ console.log(isUnique('abcda'));
 
 console.log(isUnique('abcdef'));
 
-console.log(isUnique('abcAdef'));
+console.log(isUnique('abacdef'));
 
 // function isUnique (str){  
 //     for(let i = 0; i < str.length; i++){ //O(n)
@@ -36,16 +36,21 @@ console.log(isUnique('abcAdef'));
 //     //  Space: O(n)
 // }
 
+// function isUnique (str){  
+//     let chars = {};
+//     for(let i =0; i < str.length; i++){
+//         let currentChar = str[i];
+//         if(chars[currentChar] === true){
+//             return false;
+//         }
+//         chars[currentChar]=true;
+//     }
+//     return false;
+//      // Time: O(n)
+//     //  Space: O(n)
+// }
 function isUnique (str){  
-    let chars = {};
-    for(let i =0; i < str.length; i++){
-        let currentChar = str[i];
-        if(chars[currentChar] === true){
-            return false;
-        }
-        chars[currentChar]=true;
-    }
-    return false;
-     // Time: O(n * log(n)) + O(n) => O(n + n * log(n)) => O(n*log(n))
+    return new Set(str).size ===str.length;
+     // Time: O(n)
     //  Space: O(n)
 }
