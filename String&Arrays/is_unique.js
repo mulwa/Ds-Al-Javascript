@@ -18,3 +18,15 @@ function isUnique (str){
     // Space: O(1)
 }
 
+// improved solution
+function isUnique (str){  
+    let char = str.split('').sort(); // O(n * log(n))
+    for(let i = 1; i <= char.length; i++){ //O(n)
+        if(char[i] !== char[i - 1]){
+            return true;
+        }
+        return false;
+    }
+     // Time: O(n * log(n)) + O(n) => O(n + n * log(n)) => O(n*log(n))
+    //  Space: O(n)
+}
