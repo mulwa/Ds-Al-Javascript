@@ -15,23 +15,61 @@ console.log(
     arraySubset([2,1,1,3],[1,2,3]), // true
     arraySubset([1,2],[1,2,3]), // false
     arraySubset([1,2,3],[1,2,2,3]), // false
-    arraySubset([1,2,3],[1,1,1]) // false
+    arraySubset([1,2,3,2],[1,1,1]) // false
 );
+
+// function arraySubset(supperSet, subset){ //m,n
+//     if(subset.length > supperSet.length ){
+//         return false;
+//     }
+//     // make a copy of the superset and delete current index if found
+//     const superCopy = [...supperSet]; // O(m)
+//     for(let i = 0; i < subset.length; i++){ //O(n)
+//         let currentSuperset = superCopy.indexOf(subset[i]); //O(m)       
+//         if(currentSuperset === -1){
+//             return false;
+//         }
+//         delete superCopy[currentSuperset];
+//     }
+//     return true;
+
+//     // Time: O(m*n)
+//     // spaces: O(m)
+
+// }
+
+// advanced solution
 
 function arraySubset(supperSet, subset){ //m,n
     if(subset.length > supperSet.length ){
         return false;
     }
-    // make a copy of the superset and delete current index if found
-    const superCopy = [...supperSet]; // O(m)
-    for(let i = 0; i < subset.length; i++){ //O(n)
-        let currentSuperset = superCopy.indexOf(subset[i]); //O(m)       
-        if(currentSuperset === -1){
+    let count = {};
+    for(let i=0; i< supperSet.length;i++){
+        let currentSuper = supperSet[i];     
+
+        if(count[currentSuper] === undefined){
+            count[currentSuper] = 1;
+        }else{
+            count[currentSuper]++;
+        }
+    }
+
+    for(let i =0; i < subset.length; i++){
+        let currentSub = subset[i];
+        if(count[currentSub] == undefined){
             return false;
         }
-        delete superCopy[currentSuperset];
+        count[currentSub] --;
+        if(count[currentSub]===0){
+            delete count[currentSub];
+        }
+        
     }
+    console.log(count);
+
     return true;
+
 
     // Time: O(m*n)
     // spaces: O(m)
