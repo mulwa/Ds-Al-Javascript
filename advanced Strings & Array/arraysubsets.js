@@ -71,7 +71,7 @@ function arraySubset(supperSet, subset){ //m,n
     return true;
 
 
-    // Time: O(m*n)
+    // Time: O(m + n)
     // spaces: O(m)
 
 }
